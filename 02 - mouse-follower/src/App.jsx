@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 
-function App() {
+const MouseFollow = () => {
   const [enabled, setEnabled] = useState(false)
   const [position, setPosition] = useState({x: 0, y: 0})
 
+  // Una buena práctica es separar los efectos, para que no haga uno solo todos los cálculos
+  // Efecto del pointer mode
   useEffect(() => {
     const handleMove = (event) => {
       const { clientX, clientY } = event
@@ -11,7 +13,6 @@ function App() {
     }
 
     if (enabled) {
-      console.log("Esta")
       window.addEventListener('pointermove', handleMove)
     }
 
@@ -21,8 +22,17 @@ function App() {
       window.removeEventListener('pointermove', handleMove)
     } 
   }, [enabled])
+
+  // Efecto cambiar className del body
+  useEffect(() => {
+    document.body.classList.toggle('no-cursor', enabled)
+
+    return () => {
+      document.body.classList.remove('no-cursor')
+    }
+  }, [enabled])
   return (
-    <main>
+    <>
       <div style={{
         position: 'absolute',
         backgroundColor: '#09f',
@@ -36,10 +46,16 @@ function App() {
         transform: `translate(${position.x}px, ${position.y}px)`
       }}
       />
-      <h3>Proyecto 3</h3>
       <button onClick={() => setEnabled(!enabled)}>
         {enabled ? 'Desactivar' : 'Activar'} seguir puntero
       </button>
+    </>
+  )
+}
+function App() {
+  return (
+    <main>
+      <MouseFollow />
     </main>
   )
 }
