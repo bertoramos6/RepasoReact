@@ -6,12 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "workspaces": [
+    "01 - tic-tac-toe/*",
+    "02 - mouse-follower/*"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "standard": "^17.1.0"
-  },
-  "eslintConfig": {
-    "extends": "./node_modules/standard/eslintrc.json"
   }
 }

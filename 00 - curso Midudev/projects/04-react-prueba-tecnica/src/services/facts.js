@@ -4,5 +4,5 @@ export const getRandomFact = async () => {
   const res = await fetch(CAT_ENDPOINT_RANDOM_FACT)
   const data = await res.json()
   const { fact } = data
-  return fact
+  return fact // Al ser una función asíncrona, devuelve una promesa
 }

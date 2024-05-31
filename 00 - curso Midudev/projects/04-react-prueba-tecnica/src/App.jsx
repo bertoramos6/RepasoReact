@@ -3,8 +3,8 @@ import { useCatImage } from './hooks/useCatImage.js'
 import { useCatFact } from './hooks/useCatFact.js'
 
 export function App () {
-  const { fact, refreshFact } = useCatFact()
-  const { imageUrl } = useCatImage({ fact })
+  const { fact, refreshFact } = useCatFact() // custom hook
+  const { imageUrl } = useCatImage({ fact }) // custom hook
 
   const handleClick = async () => {
     refreshFact()
